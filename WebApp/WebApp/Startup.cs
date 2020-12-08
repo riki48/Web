@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace WebApp
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//services.AddEntityFrameworkSqlServer().AddDbContext<AppDBContext>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection")));
-			services.AddEntityFrameworkSqlServer().AddDbContext<AppDBContext>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection")));
+			services.AddDbContext<AppDBContext>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection")));
 			services.AddRouting();
 			services.AddTransient<IAllCars,CarRepository>();
 			services.AddTransient<ICarsCategory, CategoryRepository>();
@@ -51,6 +52,14 @@ namespace WebApp
 			app.UseStatusCodePages();
 			app.UseStaticFiles();
 			app.UseMvcWithDefaultRoute();
+
+
+			using (var scope = app.ApplicationServices.CreateScope())
+			{
+				AppDBContext content = scope.ServiceProvider.GetRequiredService<AppDBContext>();
+				DBObjects.Initial(content);
+			}
+			
 		}
 	}
 }
