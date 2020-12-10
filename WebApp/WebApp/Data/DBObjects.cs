@@ -8,23 +8,21 @@ using WebApp.Data.Models;
 
 namespace WebApp.Data
 {
-	public class DBObjects
+	public class DBobjects
 	{
 		public static void Initial(AppDBContext content)
 		{
-				
+			
+
 
 			if (!content.Category.Any())
-			{
-				content.Category.AddRange(Categories.Select(c => c.Value));
-			}
-			if (!content.Car.Any())
+				content.Category.AddRange (Categories.Select(c => c.Value));
+			if(!content.Car.Any())
 			{
 				content.AddRange(
-
 				new Car()
 				{
-					//ID = 1,
+					ID = 1,
 					Name = "Tesla Model 5",
 					ShortDescription = "Быстрый автомобиль",
 					LongDescription = "Красивый, быстрый и очень тихий автомобиль компании Tesla",
@@ -37,7 +35,7 @@ namespace WebApp.Data
 
 				new Car()
 				{
-					//ID = 2,
+					ID = 2,
 					Name = "Ford Fiesta",
 					ShortDescription = "Тихий и спокойный",
 					LongDescription = "Удобный автомобиль для городской жизни",
@@ -50,11 +48,11 @@ namespace WebApp.Data
 
 				new Car()
 				{
-					//ID = 3,
+					ID = 3,
 					Name = "BMW M3",
 					ShortDescription = "Дерзкий и стильный",
 					LongDescription = "Удобный автомобиль для городской жизни",
-					Img = "/img/tesla.jpg",
+					Img = "/img/bmw.jpg",
 					Price = 65000,
 					IsFavourite = true,
 					Available = true,
@@ -63,7 +61,7 @@ namespace WebApp.Data
 
 				new Car()
 				{
-					//ID = 4,
+					ID = 4,
 					Name = "Mercedes C class",
 					ShortDescription = "Уютный и большой",
 					LongDescription = "Удобный автомобиль для городской жизни",
@@ -73,9 +71,10 @@ namespace WebApp.Data
 					Available = false,
 					Category = Categories["Обычные автомобили"]
 				},
+
 				new Car()
 				{
-					//ID = 5,		
+					ID = 5,
 					Name = "Nissan Leaf",
 					ShortDescription = "Бесшумный и экономный",
 					LongDescription = "Удобный автомобиль для городской жизни",
@@ -84,12 +83,12 @@ namespace WebApp.Data
 					IsFavourite = true,
 					Available = true,
 					Category = Categories["Обычные автомобили"]
-				}
-				);
+				} );		
 			}
 			content.SaveChanges();
 		}
 		private static Dictionary<string, Category> category;
+
 		public static Dictionary<string, Category> Categories
 		{
 			get
@@ -102,13 +101,14 @@ namespace WebApp.Data
 						new Category{CategoryName = "Обычные автомобили", Description = "Обычные авто"}
 					};
 					category = new Dictionary<string, Category>();
-					foreach (Category el in list)
-					{
-						category.Add(el.CategoryName, el);
-					}
+					foreach (var item in list)
+						category.Add(item.CategoryName,item);
+					
 				}
 				return category;
 			}
+			
 		}
+	
 	}
 }

@@ -10,10 +10,11 @@ namespace WebApp.Data.Repository
 {
 	public class CarRepository: IAllCars
 	{
+
 		private readonly AppDBContext appDBContent;
 
 		public CarRepository(AppDBContext appDBContent)
-		{
+		{  
 			this.appDBContent = appDBContent;
 		}
 

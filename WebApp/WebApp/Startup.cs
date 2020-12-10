@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -18,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Data.Repository;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using WebApp.Data;
+using WebApp.Data.Models;
 
 namespace WebApp
 {
@@ -37,11 +37,17 @@ namespace WebApp
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//services.AddEntityFrameworkSqlServer().AddDbContext<AppDBContext>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection")));
-			services.AddDbContext<AppDBContext>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection")));
+			
 			services.AddRouting();
 			services.AddTransient<IAllCars,CarRepository>();
 			services.AddTransient<ICarsCategory, CategoryRepository>();
+			services.AddTransient<IAllOrders, OrdersRepository>();
+			services.AddDbContext<AppDBContext>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection"))); // ?
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			services.AddScoped(sp => ShopCart.GetCart(sp));
 			services.AddMvc();
+			services.AddMemoryCache();
+			services.AddSession();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +57,19 @@ namespace WebApp
 			app.UseDeveloperExceptionPage();
 			app.UseStatusCodePages();
 			app.UseStaticFiles();
-			app.UseMvcWithDefaultRoute();
-
+			app.UseSession();
+			//app.UseMvcWithDefaultRoute();
+			app.UseMvc(routes =>
+			{
+				routes.MapRoute(name: "default", template: "{controller=Home}/{action=index}/{id?}");
+				routes.MapRoute(name: "CategoryFilter", template: "Car/{action}/{category?}", defaults: new { Controller = "Car", action = "List" });
+			});
+			
 
 			using (var scope = app.ApplicationServices.CreateScope())
 			{
 				AppDBContext content = scope.ServiceProvider.GetRequiredService<AppDBContext>();
-				DBObjects.Initial(content);
+				DBobjects.Initial(content);
 			}
 			
 		}

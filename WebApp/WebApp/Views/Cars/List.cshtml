@@ -1,16 +1,14 @@
-﻿<h1>Все автомобили</h1> 
-<h3>@Model.CurrentCategory </h3>
+﻿
+<h3 class="mb-2">@Model.CurrentCategory </h3>
+@if (Model.CurrentCategory=="")
+{
+	<h3>Все автомобили</h3>
+}
 <div class="row mt-5 mb-2">
 	@{
-	foreach (var item in Model.AllCars )
-	{
-		<div class="col-lg-4">
-			<img class="img-thumbnail" src=@item.Img alt="No Image Yet" />
-			<h2>Модель:@item.Name </h2>
-			<p>@item.ShortDescription</p>
-			<p> Цена: @item.Price.ToString("c")</p>
-			<p><a class="btn btn-warning" href="#">Подробнее</a></p>
-		</div>
+		foreach (Car item in Model.AllCars)
+		{
+			@Html.Partial("AllCars", item)
 		}
 	}
-</div>		
+</div>  
