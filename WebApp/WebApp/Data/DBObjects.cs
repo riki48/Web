@@ -12,9 +12,6 @@ namespace WebApp.Data
 	{
 		public static void Initial(AppContext content)
 		{
-			
-
-
 			if (!content.Category.Any())
 				content.Category.AddRange (Categories.Select(c => c.Value));
 			if(!content.Car.Any())

@@ -51,14 +51,26 @@
               "version": "[2.1.1, )",
               "autoReferenced": true
             },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.2, )"
             },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
             "Microsoft.AspNetCore.StaticFiles": {
               "target": "Package",
               "version": "[2.1.1, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[2.1.23, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -77,6 +89,10 @@
             "Npgsql": {
               "target": "Package",
               "version": "[4.1.5, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[4.5.3, )"
             }
           },
           "imports": [

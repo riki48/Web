@@ -8,6 +8,7 @@ namespace WebApp.Data.Models
 {
 	public class Register
 	{
+		[DataType(DataType.EmailAddress)]
 		[Required(ErrorMessage = "Не указан Email")]
 		public string Email { get; set; }
 

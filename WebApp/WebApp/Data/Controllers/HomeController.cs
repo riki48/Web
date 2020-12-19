@@ -15,11 +15,11 @@ namespace WebApp.Data.Controllers
 		private readonly IAllCars _carRep;
 
 		public HomeController(IAllCars carRep)
-		{
+		{	
 			_carRep = carRep;
 		}
 
-		//[Authorize(Roles = "admin, user")]
+		[Authorize(Roles = "admin, user")]
 		public ViewResult Index()
 		{
 			var favCars = new HomeViewModel
