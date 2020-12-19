@@ -9,7 +9,7 @@ using WebApp.Data;
 
 namespace WebApp.Migrations
 {
-    [DbContext(typeof(AppDBContext))]
+    [DbContext(typeof(Data.AppContext))]
     [Migration("20201208105315_Add-Migration CartItemCreated")]
     partial class AddMigrationCartItemCreated
     {

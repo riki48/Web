@@ -9,7 +9,7 @@ using WebApp.Data;
 
 namespace WebApp.Migrations
 {
-    [DbContext(typeof(AppDBContext))]
+    [DbContext(typeof(Data.AppContext))]
     [Migration("20201210123343_Orders")]
     partial class Orders
     {

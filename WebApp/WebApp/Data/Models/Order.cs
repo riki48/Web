@@ -16,9 +16,12 @@ namespace WebApp.Data.Models
 		[Required]
 		[StringLength(25)]
 		public string Name { get; set; }
+
+		[Required]
 		[StringLength(25)]
 		[Display(Name = "Фамилия")]
 		public string Surname { get; set; }
+
 		[StringLength(50)]
 		[Display(Name = "Адрес")]
 		public string Adress { get; set; }
@@ -30,6 +33,7 @@ namespace WebApp.Data.Models
 
 		[DataType(DataType.EmailAddress)]
 		[Display(Name = "Email")]
+		[Required]
 		public string email { get; set; }
 		[BindNever]
 		[ScaffoldColumn(false)]

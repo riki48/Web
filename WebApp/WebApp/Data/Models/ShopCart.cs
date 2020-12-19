@@ -10,9 +10,9 @@ namespace WebApp.Data.Models
 {
 	public class ShopCart
 	{
-		private readonly AppDBContext appDBContext;
+		private readonly AppContext appDBContext;
 
-		public ShopCart(AppDBContext appDBContext)
+		public ShopCart(AppContext appDBContext)
 		{
 			this.appDBContext = appDBContext;
 		}
@@ -23,7 +23,7 @@ namespace WebApp.Data.Models
 		public static ShopCart GetCart(IServiceProvider services)
 		{
 			ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-			AppDBContext context = services.GetService<AppDBContext>();
+			AppContext context = services.GetService<AppContext>();
 			string shopCartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
 			session.SetString("CartId", shopCartId);
 

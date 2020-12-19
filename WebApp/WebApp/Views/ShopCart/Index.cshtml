@@ -1,12 +1,26 @@
 ﻿@model ShopCartViewModel
-<div class ="container">
+<style type="text/css">
+   h3 {
+     margin-top: 100px;
+   }
+</style>
+@if (Model.ShopCart.listShopItems.Capacity>0)
+{
+	<div class ="container">
 	@foreach (var item in Model.ShopCart.listShopItems)
 	{
 		<div class="alert alert-warning mt-3">
 			<b>Автомобиль:</b>@item.Car.Name<br />
-			<b>Цена:</b> @item.Car.Price.ToString("c") 
+			<b>Цена:</b> @item.Car.Price.ToString("c")
+			@*<a asp-controller="ShopCart" asp-action="Delete">Удалить</a>*@
 		</div>
 	}
 		<hr />
 	<a class="btn btn-danger" asp-controller="Order" asp-action="Checkout">Оплатить</a>
-</div>
+	</div>
+}
+else
+{
+	<h3>У вас пока нет заказов.Вернуться в <a asp-controller="Home" asp-action="Index">магазин?</a></h3>
+	<img src="https://img.favpng.com/14/14/11/web-hosting-service-domain-name-png-favpng-7P1RxAS7AYW2F6x8K89XHNTEF.jpg" alt="">
+}

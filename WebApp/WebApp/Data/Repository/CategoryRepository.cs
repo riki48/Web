@@ -10,9 +10,9 @@ namespace WebApp.Data.Repository
 	public class CategoryRepository : ICarsCategory
 	{
 
-		private readonly AppDBContext appDBContent;
+		private readonly AppContext appDBContent;
 
-		public CategoryRepository(AppDBContext appDBContent)
+		public CategoryRepository(AppContext appDBContent)
 		{
 			this.appDBContent = appDBContent;
 		}

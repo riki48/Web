@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Data;
+using AppContext = WebApp.Data.AppContext;
 
 namespace WebApp.Migrations
 {
-    [DbContext(typeof(AppDBContext))]
+    [DbContext(typeof(AppContext))]
     partial class AppDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -18,6 +19,29 @@ namespace WebApp.Migrations
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AuthTest.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Password");
+
+                    b.Property<int?>("RoleId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new { Id = 1, Email = "admin@mail.ru", Password = "123456", RoleId = 1 }
+                    );
+                });
 
             modelBuilder.Entity("WebApp.Data.Models.Car", b =>
                 {
@@ -88,15 +112,21 @@ namespace WebApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Adress");
+                    b.Property<string>("Adress")
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(25);
 
                     b.Property<DateTime>("OrderTime");
 
-                    b.Property<string>("Phone");
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(12);
 
-                    b.Property<string>("Surname");
+                    b.Property<string>("Surname")
+                        .HasMaxLength(25);
 
                     b.Property<string>("email");
 
@@ -124,6 +154,31 @@ namespace WebApp.Migrations
                     b.HasIndex("orderID");
 
                     b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("WebApp.Data.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new { Id = 1, Name = "admin" },
+                        new { Id = 2, Name = "user" }
+                    );
+                });
+
+            modelBuilder.Entity("AuthTest.Models.User", b =>
+                {
+                    b.HasOne("WebApp.Data.Models.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("WebApp.Data.Models.Car", b =>

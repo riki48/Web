@@ -13070,11 +13070,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\worker\\source\\repos\\WebApp\\WebApp\\WebApp.csproj",
+      "projectUniqueName": "C:\\Users\\worker\\Documents\\GitHub\\Web\\WebApp\\WebApp\\WebApp.csproj",
       "projectName": "WebApp",
-      "projectPath": "C:\\Users\\worker\\source\\repos\\WebApp\\WebApp\\WebApp.csproj",
+      "projectPath": "C:\\Users\\worker\\Documents\\GitHub\\Web\\WebApp\\WebApp\\WebApp.csproj",
       "packagesPath": "C:\\Users\\worker\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\worker\\source\\repos\\WebApp\\WebApp\\obj\\",
+      "outputPath": "C:\\Users\\worker\\Documents\\GitHub\\Web\\WebApp\\WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

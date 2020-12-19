@@ -9,10 +9,10 @@ namespace WebApp.Data.Repository
 {
 	public class OrdersRepository : IAllOrders
 	{
-		private readonly AppDBContext appDBContext;
+		private readonly AppContext appDBContext;
 
 		private readonly ShopCart shopCart;
-		public OrdersRepository(AppDBContext appDBContext,ShopCart shopCart)
+		public OrdersRepository(AppContext appDBContext,ShopCart shopCart)
 		{
 			this.appDBContext = appDBContext;
 			this.shopCart = shopCart;

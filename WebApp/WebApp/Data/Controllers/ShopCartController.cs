@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebApp.Data.Interfaces;
 using WebApp.Data.Models;
 using WebApp.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApp.Data.Controllers
 {
@@ -18,6 +19,14 @@ namespace WebApp.Data.Controllers
 		{
 			_carRep = carRep;
 			_shopCart = shopCart;
+		}
+		
+		public IActionResult Delete(ShopCartViewModel item)
+		{
+			//List<CartItem> orders = _shopCart.listShopItems;
+			
+			return Content(item.ShopCart.ShopCartId);
+
 		}
 
 		public ViewResult Index()

@@ -18,6 +18,7 @@ using WebApp.Data.Repository;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using WebApp.Data;
 using WebApp.Data.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace WebApp
 {
@@ -42,12 +43,18 @@ namespace WebApp
 			services.AddTransient<IAllCars,CarRepository>();
 			services.AddTransient<ICarsCategory, CategoryRepository>();
 			services.AddTransient<IAllOrders, OrdersRepository>();
-			services.AddDbContext<AppDBContext>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection"))); // ?
+			services.AddDbContext<Data.AppContext>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection"))); // ?
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddScoped(sp => ShopCart.GetCart(sp));
 			services.AddMvc();
 			services.AddMemoryCache();
 			services.AddSession();
+			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+				.AddCookie(options =>
+				{
+					options.LoginPath = new PathString("/Account/Login");
+					options.AccessDeniedPath = new PathString("/Account/Login");
+				});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +75,7 @@ namespace WebApp
 
 			using (var scope = app.ApplicationServices.CreateScope())
 			{
-				AppDBContext content = scope.ServiceProvider.GetRequiredService<AppDBContext>();
+				Data.AppContext content = scope.ServiceProvider.GetRequiredService<Data.AppContext>();
 				DBobjects.Initial(content);
 			}
 			

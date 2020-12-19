@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace WebApp.Data.Controllers
 		{
 			_carRep = carRep;
 		}
+
+		//[Authorize(Roles = "admin, user")]
 		public ViewResult Index()
 		{
 			var favCars = new HomeViewModel
@@ -24,6 +27,11 @@ namespace WebApp.Data.Controllers
 				FavCars = _carRep.GetFavouriteCars
 			};
 			return View(favCars);
+		}
+		//[Authorize(Roles = "admin")]
+		public IActionResult Secret()
+		{
+			return Content("Secret FaNkTiOn");
 		}
 	}
 }

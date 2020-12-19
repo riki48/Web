@@ -10,7 +10,7 @@ namespace WebApp.Data
 {
 	public class DBobjects
 	{
-		public static void Initial(AppDBContext content)
+		public static void Initial(AppContext content)
 		{
 			
 
@@ -22,7 +22,7 @@ namespace WebApp.Data
 				content.AddRange(
 				new Car()
 				{
-					ID = 1,
+					
 					Name = "Tesla Model 5",
 					ShortDescription = "Быстрый автомобиль",
 					LongDescription = "Красивый, быстрый и очень тихий автомобиль компании Tesla",
@@ -35,11 +35,11 @@ namespace WebApp.Data
 
 				new Car()
 				{
-					ID = 2,
+					
 					Name = "Ford Fiesta",
 					ShortDescription = "Тихий и спокойный",
 					LongDescription = "Удобный автомобиль для городской жизни",
-					Img = "/img/tesla.jpg",
+					Img = "/img/Ford Fiesta.jpg",
 					Price = 11000,
 					IsFavourite = false,
 					Available = true,
@@ -48,7 +48,7 @@ namespace WebApp.Data
 
 				new Car()
 				{
-					ID = 3,
+					
 					Name = "BMW M3",
 					ShortDescription = "Дерзкий и стильный",
 					LongDescription = "Удобный автомобиль для городской жизни",
@@ -61,8 +61,8 @@ namespace WebApp.Data
 
 				new Car()
 				{
-					ID = 4,
-					Name = "Mercedes C class",
+					
+					Name = "Mercedes-C",
 					ShortDescription = "Уютный и большой",
 					LongDescription = "Удобный автомобиль для городской жизни",
 					Img = "/img/tesla.jpg",
@@ -74,7 +74,7 @@ namespace WebApp.Data
 
 				new Car()
 				{
-					ID = 5,
+					
 					Name = "Nissan Leaf",
 					ShortDescription = "Бесшумный и экономный",
 					LongDescription = "Удобный автомобиль для городской жизни",

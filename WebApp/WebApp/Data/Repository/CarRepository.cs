@@ -11,9 +11,9 @@ namespace WebApp.Data.Repository
 	public class CarRepository: IAllCars
 	{
 
-		private readonly AppDBContext appDBContent;
+		private readonly AppContext appDBContent;
 
-		public CarRepository(AppDBContext appDBContent)
+		public CarRepository(AppContext appDBContent)
 		{  
 			this.appDBContent = appDBContent;
 		}
